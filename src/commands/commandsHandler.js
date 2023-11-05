@@ -1,7 +1,7 @@
 import { sentences } from "./dailyMessage.js"; // Assuming dailyMessage.js is in the same directory
 import { questionsArray as questions } from "../content/questions.js"; // Assuming questions.js is in the same directory
-import { EmbedBuilder, AttachmentBuilder } from 'discord.js';
-import { verbenliste as verbs } from "../content/verben.js";  // Importing the verb list
+import { EmbedBuilder, AttachmentBuilder } from "discord.js";
+import { verbenliste as verbs } from "../content/verben.js"; // Importing the verb list
 import { aboutFields } from "../content/aboutFields.js";
 // Individual command handlers:
 
@@ -31,24 +31,31 @@ function handleQuestionCommand(interaction) {
 }
 
 async function handleVerbCommand(interaction) {
-    const randomIndex = Math.floor(Math.random() * verbs.length);
-    const randomVerb = verbs[randomIndex];
-    await interaction.reply(`Verb: ${randomVerb.word}\n\nBeispiele:\n1. ${randomVerb.examples.join("\n2. ")}`);
-  }
+  const randomIndex = Math.floor(Math.random() * verbs.length);
+  const randomVerb = verbs[randomIndex];
+  await interaction.reply(
+    `Verb: ${randomVerb.word}\n\nBeispiele:\n1. ${randomVerb.examples.join(
+      "\n2. "
+    )}`
+  );
+}
 
 function handleAboutCommand(interaction) {
   const embed = new EmbedBuilder()
-    .setColor("#0099ff") // You can choose any color you like
-    .setTitle("About TAjAR")
-    .setDescription("Some description here about your server")
-    .addFields(aboutFields) // Add the array of fields to the embed
+    .setColor("#0099ff") 
+    .setTitle("About 7AjAR")
 
-    // You can add a footer, thumbnail, and other fields as you like
-    .setTimestamp();
+    .setDescription("Welcome to 7AjAR Server!")
+    .addFields(aboutFields) 
 
+  
+    .setTimestamp()
+    .setAuthor({
+      name: "Source Code",
+      url: "https://github.com/m7md977/7ajarDiscordBot",
+    })  
   interaction.reply({ embeds: [embed] });
 }
-
 
 export function handleCommand(interaction) {
   if (!interaction.isChatInputCommand()) return;
