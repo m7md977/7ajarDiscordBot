@@ -69,7 +69,7 @@ function sendDailyVerb(client) {
         if (!lastMessage) {
           verbIndex = 0; 
         } else {
-          const foundIndex = verbs.findIndex(verb => lastMessage.content.includes(verb));
+          const foundIndex = verbs.findIndex(wort => lastMessage.content.includes(wort));
 
           if (foundIndex !== -1 && foundIndex < verbs.length - 1) {
             verbIndex = foundIndex + 1;
@@ -79,8 +79,7 @@ function sendDailyVerb(client) {
         }
 
         const currentVerb = verbs[verbIndex];
-        const taggedRole = `<@&${ROLE_ID}>`;
-        const message = `${taggedRole}\n Verb des Tages: \n${currentVerb}`;
+        const message = `\n Verb des Tages: \n${currentVerb} \n\nBeispiele:\n1. ${currentVerb.examples.join("\n2. ")}`;
 
         channel.send(message);
         console.log("Daily verb sent successfully!");

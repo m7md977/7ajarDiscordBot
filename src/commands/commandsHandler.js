@@ -30,10 +30,10 @@ function handleQuestionCommand(interaction) {
   interaction.reply(randomQuestion);
 }
 
-async function handleVerbCommand(interaction) {
+ function handleVerbCommand(interaction) {
   const randomIndex = Math.floor(Math.random() * verbs.length);
   const randomVerb = verbs[randomIndex];
-  await interaction.reply(
+   interaction.reply(
     `Verb: ${randomVerb.word}\n\nBeispiele:\n1. ${randomVerb.examples.join(
       "\n2. "
     )}`
