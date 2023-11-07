@@ -1,6 +1,5 @@
 import { a1Wortliste as sentences } from "../content/worter.js";
 import { verbenliste as verbs } from "../content/verben.js";  // Importing the verb list
-
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -52,9 +51,7 @@ function sendDailyMessage(client) {
   }
 }
 
-
 let verbIndex = 0;  // Keep track of the current verb index
-
 function sendDailyVerb(client) {
   const channel = client.channels.cache.get(CHANNEL_ID);
   const role = channel.guild.roles.cache.get(ROLE_ID); // Get the role by its ID
@@ -79,8 +76,7 @@ function sendDailyVerb(client) {
         }
 
         const currentVerb = verbs[verbIndex];
-        const message = `\n Verb des Tages: \n${currentVerb} \n\nBeispiele:\n1. ${currentVerb.examples.join("\n2. ")}`;
-
+        const message = `\n Verb des Tages: \n${currentVerb.word} \n\nBeispiele:\n1. ${currentVerb.examples.join("\n2. ")}`;
         channel.send(message);
         console.log("Daily verb sent successfully!");
       })
@@ -91,7 +87,4 @@ function sendDailyVerb(client) {
     console.error("Channel or role not found!");
   }
 }
-
-
-
 export { sendDailyMessage, sendDailyVerb, sentences };
