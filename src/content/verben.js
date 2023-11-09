@@ -5,7 +5,7 @@ export const verbenliste = [
   },
   {
     word: "sehen",
-    examples: ["Ich kann es nicht sehen.", "Sieht du den Vogel dort?"],
+    examples: ["Ich kann es nicht sehen.", "Siehst du den Vogel dort?"],
   },
   {
     word: "hören",
@@ -17,7 +17,7 @@ export const verbenliste = [
   },
   {
     word: "essen",
-    examples: ["Ich esse gerade zu Mittag.", "Was möchtest du essen?"],
+    examples: ["Ich esse gerade zu Mittag.", "was willst du essen?"],
   },
   {
     word: "trinken",
@@ -68,7 +68,7 @@ export const verbenliste = [
   },
   {
     word: "nehmen",
-    examples: ["Ich nehme einen Apfel.", "Kannst du das für mich nehmen?"],
+    examples: ["Ich nehme einen Apfel.", "Tom nimmt gerade ein Bad."],
   },
   {
     word: "finden",
@@ -76,7 +76,7 @@ export const verbenliste = [
   },
   {
     word: "arbeiten",
-    examples: ["Sie arbeitet im Büro.", "Ich arbeite von zu Hause aus."],
+    examples: ["Sie arbeitet im Büro.", "Ich arbeite von Zuhause."],
   },
   {
     word: "lernen",
