@@ -1,4 +1,5 @@
 export const keywordResponses = [
+  // Asiyah
   {
     keywords: ["Asiyah", "763365623681515540", "asiyah", "آسية"],
     response: [
@@ -13,30 +14,7 @@ export const keywordResponses = [
     keywords: ["أسية", "أسيا", "اسية", "اسيا"],
     response: "هيك بينكتب الأسم (آسية) <:Pepoyuck:966702415099334676> ",
   },
-
-{
-    keywords: ["1151334101303963748"],
-    response:["خالتنا؟", "<a:MenheraEatingPopcorn:998735995941961808>" ]
-  },
-
-  { keywords: ["يعور", "تعورت"], response: "تعورت كتير ؟" },
-  { keywords: ["كتير"], response: "يعلااي" },
-  { keywords: ["386246275076587520"], response:[ "حلاوة الجبنة حمصية أخي", "<a:rooHellfire:857630924853084180>"]},
-  {
-    keywords: ["840759997004382218"],
-    response: ["The cutie Bitch ??", "<a:5550xqcmald:958911993396490280>"],
-  },
-  {
-    keywords: ["622046776605671465"],
-    response: "The Cutie?",
-  },
-  { keywords: ["856366515405062164"], response: [ "<a:wakey:669517191258832912>", "<:MenheraLounge1:1004248437287551117><:MenheraLounge2:1004248439703482478>","Mr. Maverick", "دوبامين يا محسنين"] },
-  { keywords: ["hello"], response: ["hello", "<a:hi:949745990305480754>"] },
-  {
-    keywords: ["977749209258278982"],
-    response: ["الله", "<:es_pray:1150422206887768165>"],
-  },
-  { keywords: ["1086810503067738273"], response: ["<a:MenheraCelebrate:1154256344845656195>", " <a:claps_peepo:837450980693770240> شطور", "<a:hypePatPat:741561705691349052>", " صباح الخير أحبابي <a:kisses:1163850980593512581> "] },
+  // Senku
   {
     keywords: ["335916849084497933"],
     response: [
@@ -45,21 +23,74 @@ export const keywordResponses = [
       "<a:emoji_199:1152309416327122966>",
     ],
   },
-
-{
-    keywords: ["959533089627963512" ],
-    response: ["<a:cuba66:1169412637352792134>", "<a:4cute15:983584455933427712>", "خد تعالى مش هعملك حاجة " ]
+  // Walla
+  // {
+  //   keywords: ["1151334101303963748"],
+  //   response: ["خالتنا؟", "<a:MenheraEatingPopcorn:998735995941961808>"],
+  // },
+  // Goftra
+  {
+    keywords: ["386246275076587520"],
+    response: ["حلاوة الجبنة حمصية أخي", "<a:rooHellfire:857630924853084180>"],
   },
+  // B7r
+  {
+    keywords: ["840759997004382218"],
+    response: ["The cutie Bitch ??", "<a:5550xqcmald:958911993396490280>"],
+  },
+  // Samo
+  {
+    keywords: ["622046776605671465"],
+    response: "The Cutie?",
+  },
+  // Mamo
+  // {
+  //   keywords: ["856366515405062164"],
+  //   response: [
+  //     "<a:wakey:669517191258832912>",
+  //     "<:MenheraLounge1:1004248437287551117><:MenheraLounge2:1004248439703482478>",
+  //     "Mr. Maverick",
+  //     "دوبامين يا محسنين",
+  //   ],
+  // },
+  // Divine
+  {
+    keywords: ["977749209258278982"],
+    response: ["الله", "<:es_pray:1150422206887768165>"],
+  },
+  // Hikaru
+  // {
+  //   keywords: ["1086810503067738273"],
+  //   response: [
+  //     "<a:MenheraCelebrate:1154256344845656195>",
+  //     " <a:claps_peepo:837450980693770240> شطور",
+  //     "<a:hypePatPat:741561705691349052>",
+  //     " صباح الخير أحبابي <a:kisses:1163850980593512581> ",
+  //   ],
+  // },
 
+  // LuLu
+  // {
+  //   keywords: ["959533089627963512"],
+  //   response: [
+  //     "<a:cuba66:1169412637352792134>",
+  //     "<a:4cute15:983584455933427712>",
+  //     "خد تعالى مش هعملك حاجة ",
+  //   ],
+  // },
+  // Waffle
   { keywords: ["526181320343158794"], response: "اخووووووووي" },
+  // Mario
   {
     keywords: ["825890712884215828"],
     response: "<a:woah:949745989743431700> استناني",
   },
+  // Chado
   {
     keywords: ["495926332145008641"],
     response: ["أوهايو مينا سان", "الديناصورة المتطورة"],
   },
+  // ELite
   {
     keywords: ["949831157082644510"],
     response: [
@@ -70,6 +101,7 @@ export const keywordResponses = [
       "<a:kisskiss:1151127966919708672>",
     ],
   },
+  // Bot responses (not user specific)
   {
     keywords: ["وينكم", "وين الكل", "أوكسجين"],
     response: " <:emoji_194:1152241644838592625> عبتختنق ؟  ",
@@ -78,8 +110,9 @@ export const keywordResponses = [
     keywords: ["مابدي", "ما بدي"],
     response: "<:1108647392070336576:1150970636433358898>",
   },
-  // {
-  //   keywords: "1149806342970818700",
-  //   response: ["<a:779557165797998594:974369675091787926>", ""],
-  // },
+  { keywords: ["يعور", "تعورت"], response: "تعورت كتير ؟" },
+  { keywords: ["كتير"], response: "يعلااي" },
+  { keywords: ["hello"], response: ["hello", "<a:hi:949745990305480754>"] },
+  { keywords: ["ما عكيفك", "مو عكيفك", "ماعكيفك"], response: ["<:Pepoyuck:966702415099334676> عكيف أمك ؟"] },
+  
 ];
