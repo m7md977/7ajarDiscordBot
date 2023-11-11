@@ -24,6 +24,8 @@ const client = new Client({
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  sendDailyMessage(client);
+  sendDailyVerb(client);
   cron.schedule("0 14 * * *", () => {
     sendDailyMessage(client);
     sendDailyVerb(client);

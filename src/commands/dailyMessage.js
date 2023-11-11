@@ -1,47 +1,59 @@
 import { a1Wortliste as sentences } from "../content/worter.js";
-import { verbenliste as verbs } from "../content/verben.js";  // Importing the verb list
+import { verbenliste as verbs } from "../content/verben.js";  
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 const CHANNEL_ID = process.env.CHANNEL_ID_HAUSAUFGABEN;
 const ROLE_ID = process.env.ROLE_ID_HAUSAUFGABEN;
 
-let currentIndex = 0; // Keep track of the current sentence index
+// Assuming a JSON file for storing indices
+const INDEX_FILE = 'indices.json';
+
+// Read the last indices from file
+function readIndices() {
+  try {
+    const data = fs.readFileSync(INDEX_FILE, 'utf8');
+    return JSON.parse(data);
+  } catch (err) {
+    console.error('Error reading indices file:', err);
+    return { wordIndex: 0, verbIndex: 0 };
+  }
+}
+
+// Save the current indices to file
+function saveIndices(indices) {
+  try {
+    const data = JSON.stringify(indices);
+    fs.writeFileSync(INDEX_FILE, data, 'utf8');
+  } catch (err) {
+    console.error('Error writing indices file:', err);
+  }
+}
 
 function sendDailyMessage(client) {
   const channel = client.channels.cache.get(CHANNEL_ID);
-  const role = channel.guild.roles.cache.get(ROLE_ID); // Get the role by its ID
+  const role = channel.guild.roles.cache.get(ROLE_ID);
+  const indices = readIndices();
 
   if (channel && role) {
-    // Fetch the last message sent in the channel
     channel.messages
       .fetch({ limit: 1 })
       .then((messages) => {
         const lastMessage = messages.first();
         
-        // If there was no last message or the last message doesn't match any from the list
-        if (!lastMessage) {
-          currentIndex = 0; // Reset to the first message in the list
-        } else {
-          // Find the index of the last sent message in the sentences list
-          const foundIndex = sentences.findIndex(sentence => lastMessage.content.includes(sentence.word));
-
-          // If found, set the currentIndex to the next one, otherwise reset to the beginning
-          if (foundIndex !== -1 && foundIndex < sentences.length - 1) {
-            currentIndex = foundIndex + 1;
-          } else {
-            currentIndex = 0;
-          }
+        if (!lastMessage || !sentences.some(sentence => lastMessage.content.includes(sentence.word))) {
+          indices.wordIndex = (indices.wordIndex + 1) % sentences.length;
         }
-        
-        const currentSentence = sentences[currentIndex];
-        const taggedRole = `<@&${ROLE_ID}>`; // Tag the role using its ID
+
+        const currentSentence = sentences[indices.wordIndex];
+        const taggedRole = `<@&${ROLE_ID}>`; 
         const message = `${taggedRole}\n\n كلمة اليوم للحفظ \n\n${currentSentence.word}\n\nBeispiele:\n1. ${currentSentence.examples.join("\n2. ")}`;
 
         channel.send(message);
+        saveIndices(indices);
         console.log("Daily message sent successfully!");
 
-        // No need to increment currentIndex here since we've done it above
       })
       .catch((error) => {
         console.error("Error fetching messages:", error);
@@ -51,10 +63,10 @@ function sendDailyMessage(client) {
   }
 }
 
-let verbIndex = 0;  // Keep track of the current verb index
 function sendDailyVerb(client) {
   const channel = client.channels.cache.get(CHANNEL_ID);
-  const role = channel.guild.roles.cache.get(ROLE_ID); // Get the role by its ID
+  const role = channel.guild.roles.cache.get(ROLE_ID);
+  const indices = readIndices();
 
   if (channel && role) {
     channel.messages
@@ -62,22 +74,14 @@ function sendDailyVerb(client) {
       .then((messages) => {
         const lastMessage = messages.first();
 
-        // Check the last verb sent
-        if (!lastMessage) {
-          verbIndex = 0; 
-        } else {
-          const foundIndex = verbs.findIndex(wort => lastMessage.content.includes(wort));
-
-          if (foundIndex !== -1 && foundIndex < verbs.length - 1) {
-            verbIndex = foundIndex + 1;
-          } else {
-            verbIndex = 0;
-          }
+        if (!lastMessage || !verbs.some(verb => lastMessage.content.includes(verb))) {
+          indices.verbIndex = (indices.verbIndex + 1) % verbs.length;
         }
 
-        const currentVerb = verbs[verbIndex];
+        const currentVerb = verbs[indices.verbIndex];
         const message = `\n Verb des Tages: \n${currentVerb.word} \n\nBeispiele:\n1. ${currentVerb.examples.join("\n2. ")}`;
         channel.send(message);
+        saveIndices(indices);
         console.log("Daily verb sent successfully!");
       })
       .catch((error) => {
@@ -87,4 +91,5 @@ function sendDailyVerb(client) {
     console.error("Channel or role not found!");
   }
 }
-export { sendDailyMessage, sendDailyVerb, sentences };
+
+export { sendDailyMessage, sendDailyVerb };

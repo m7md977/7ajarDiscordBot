@@ -1,4 +1,4 @@
-import { sentences } from "./dailyMessage.js"; // Assuming dailyMessage.js is in the same directory
+import { a1Wortliste as sentences } from "../content/worter.js";
 import { questionsArray as questions } from "../content/questions.js"; // Assuming questions.js is in the same directory
 import { EmbedBuilder, AttachmentBuilder } from "discord.js";
 import { verbenliste as verbs } from "../content/verben.js"; // Importing the verb list
