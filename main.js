@@ -1,6 +1,5 @@
 import {
-  sendDailyMessage,
-  sendDailyVerb,
+  sendDailyContent
 } from "./src/commands/dailyMessage.js";
 import { handleCommand } from "./src/commands/commandsHandler.js";
 import { registerCommands } from "./src/commands/register-commands.js";
@@ -24,9 +23,9 @@ const client = new Client({
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  
   cron.schedule("0 14 * * *", () => {
-    sendDailyMessage(client);
-    sendDailyVerb(client);
+    sendDailyContent(client);
   });
   registerCommands();
 });
