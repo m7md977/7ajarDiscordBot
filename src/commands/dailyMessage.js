@@ -41,7 +41,7 @@ function sendDailyContent(client) {
   const currentSentence = sentences[indices.wordIndex];
   const currentVerb = verbs[indices.verbIndex];
 
-  const message = `${role.toString()}\n\ Wort des Tages: \n\n${currentSentence.word}\n\nBeispiele:\n1. ${currentSentence.examples.join("\n2. ")}\n\nVerb des Tages: \n${currentVerb.word} \n\nBeispiele:\n1. ${currentVerb.examples.join("\n2. ")}`;
+  const message = `${role.toString()}\n\ Wort des Tages: \n\n${currentSentence.word}\n\nBeispiele:\n1. ${currentSentence.examples.join("\n2. ")}\n\nVerb des Tages: \n\n${currentVerb.word} \n\nBeispiele:\n1. ${currentVerb.examples.join("\n2. ")}`;
 
   channel.send(message).then(() => {
     saveIndices(indices);
