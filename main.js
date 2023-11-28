@@ -4,7 +4,6 @@ import {
 import { handleCommand } from "./src/commands/commandsHandler.js";
 import { registerCommands } from "./src/commands/register-commands.js";
 import { handleKeywordReply } from "./src/commands/keywordReplies.js";
-
 import { Client, GatewayIntentBits } from "discord.js";
 import cron from "node-cron";
 import dotenv from "dotenv";
@@ -17,7 +16,8 @@ const client = new Client({
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.DirectMessages
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildMembers,
   ],
 });
 

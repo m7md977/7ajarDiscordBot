@@ -24,6 +24,10 @@ const commands = [
     name: "tania",
     description: "get a random Question from Tania",
   },
+  {
+    name: "randomuser",
+    description: "get a random User",
+  },
 ];
 
 const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);

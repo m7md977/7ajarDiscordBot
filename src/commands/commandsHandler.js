@@ -26,7 +26,7 @@ function handleWortCommand(interaction) {
 function handleVerbCommand(interaction) {
   const randomIndex = Math.floor(Math.random() * verbs.length);
   const randomVerb = verbs[randomIndex];
-   interaction.reply(
+  interaction.reply(
     `Verb: ${randomVerb.word}\n\nBeispiele:\n1. ${randomVerb.examples.join(
       "\n2. "
     )}`
@@ -45,22 +45,40 @@ function handleTaniaCommand(interaction) {
   interaction.reply(randomQuestion);
 }
 
+async function randomUser(message) {
+  const members = await message.guild.members.fetch();
 
+  const nonBotMembers = members.filter(member => !member.user.bot);
+
+  if (nonBotMembers.size === 0) {
+      message.channel.send("No non-bot users found in this server.");
+      return;
+  }
+
+  const randomMember = nonBotMembers.random();
+
+  const embed = new EmbedBuilder()
+      .setColor("#0099ff")
+      .setTitle("Random User")
+      .setDescription(`The chosen one is ${randomMember.toString()}`)
+      .setTimestamp();
+
+  message.channel.send({ embeds: [embed] });
+}
 
 function handleAboutCommand(interaction) {
   const embed = new EmbedBuilder()
-    .setColor("#0099ff") 
+    .setColor("#0099ff")
     .setTitle("About 7AjAR")
 
     .setDescription("Welcome to 7AjAR Server!")
-    .addFields(aboutFields) 
+    .addFields(aboutFields)
 
-  
     .setTimestamp()
     .setAuthor({
       name: "Source Code",
       url: "https://github.com/m7md977/7ajarDiscordBot",
-    })  
+    });
   interaction.reply({ embeds: [embed] });
 }
 
@@ -82,6 +100,9 @@ export function handleCommand(interaction) {
       break;
     case "tania":
       handleTaniaCommand(interaction);
+      break;
+    case "randomuser":
+      randomUser(interaction);
       break;
     default:
       console.warn(`Unknown command: ${interaction.commandName}`);
